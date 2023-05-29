@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import logofinal from '../imagenes'
+import PropTypes from 'prop-types';
 
 const principal = () => {
   return (

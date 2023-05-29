@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import login from "../imagenes";
+import loginImg from "../imagenes"; 
 import { useHistory } from "react-router-dom";
 import { login } from "../api";
 // debo crear un formulario de inicio de sesion
@@ -19,7 +19,7 @@ const loginForm = () => {
     // usar bloque catch??? para manejar los errores
     // revisar de nuevo :(
     // redireccion de acuerdo al rol
-    if (role === "admin") {
+    if (role === "admin") {     
       history.push("/admin");
     } else if (role === "mesero") {
       history.push("/mesero");
@@ -29,7 +29,7 @@ const loginForm = () => {
   };
   return (
     <div>
-      <img src={login} alt="login" />
+      <img src={loginImg} alt="login" />
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -49,3 +49,23 @@ const loginForm = () => {
   );
 };
 export default loginForm;
+
+
+/* Mira pudes probar el siguiente codigo, es una funcion que lanza una peticion POST al endpoint de login
+
+const getToken = async (email, password) => {
+  const url = "http://localhost:8080/login"
+  const data = {email, password};
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+getToken("anita.borg@systers.xyz", "123456").then((data) => {
+  console.log(data); // JSON data parsed by `data.json()` call
+}); */
