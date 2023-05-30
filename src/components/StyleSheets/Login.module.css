@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.loginImg {
+  width: 416px;
+  height: 220px;
+  top: 26px;
+  left: 366px;
+  align-items: center;
+}
+.containerCafe {
+  height: 417px;
+  width: 668px;
+  left: 250px;
+  top: 246px;
+  border-radius: 15px;
+  background: #e3e09a;
+}
+.inputLogin {
+  height: 53px;
+  width: 433px;
+  left: 367px;
+  top: 336px;
+  border-radius: 5px;
+}
+.buttonLogin {
+    background: #FD6161;
+}

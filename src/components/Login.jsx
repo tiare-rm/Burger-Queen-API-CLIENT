@@ -1,55 +1,40 @@
-import React, { useState } from "react";
-import loginImg from "../imagenes"; 
-import { useHistory } from "react-router-dom";
-import { login } from "../api";
 // debo crear un formulario de inicio de sesion
 // uso de credenciales (ver el mock)
 // debo determinar el rol de usuario ya sea cocina, admin, mesero
 // buscar acerca de las bibliotecas de enrutamiento
+import React, { useState } from "react";
+import { loginApi } from "../api";
+import styles from "./StyleSheets/Login.module.css";
+import loginImg from "./imagenes/loginImg.png";
 
-const loginForm = () => {
-  const history = useHistory();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Login = () => {
+  const [email, password] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // ?????? aqui debo verificar las credenciales seguir buscando info de eso
-    // y como usarlo de acuerdo a mis usuarios y codigo
-    // usar bloque catch??? para manejar los errores
-    // revisar de nuevo :(
-    // redireccion de acuerdo al rol
-    if (role === "admin") {     
-      history.push("/admin");
-    } else if (role === "mesero") {
-      history.push("/mesero");
-    } else if (role === "cocina") {
-      history.push("/cocina");
-    }
-  };
   return (
     <div>
-      <img src={loginImg} alt="login" />
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nombre de usuario"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Iniciar sesión</button>
-      </form>
+      <img className={styles.loginImg} src={loginImg}></img>
+      <div className="{styles.containerCafe}">
+        <form>
+          <input
+            type="email"
+            placeholder="Ingresar Correo Electrónico"
+            className="{styles.inputLogin}"
+          />
+          <input
+            type="password"
+            placeholder="Ingresar Clave"
+            className="{styles.inputLogin}"
+          />
+          <button type="submit" className="{styles.buttonLogin}">
+            ENTRAR
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
-export default loginForm;
 
+export default Login;
 
 /* Mira pudes probar el siguiente codigo, es una funcion que lanza una peticion POST al endpoint de login
 
