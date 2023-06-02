@@ -3,33 +3,82 @@
 // debo determinar el rol de usuario ya sea cocina, admin, mesero
 // buscar acerca de las bibliotecas de enrutamiento
 import React, { useState } from "react";
-import { loginApi } from "../api";
 import styles from "./StyleSheets/Login.module.css";
 import loginImg from "./imagenes/loginImg.png";
+import logo from "./imagenes/logo.png";
+import "./StyleSheets/fonts.css";
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 const Login = () => {
-  const [email, password] = useState("");
+  const history = useHistory(); //inicializo el hook de react 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const API_URL = 'http://localhost:8080/login';
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(API_URL, {
+        email,
+        password,
+      }
+      );
+      const token = response.data.token;
+      console.log(token);
+      //aquí redireccionare al usuario a otra pagina despues de la autenticación
+      history.push("/Pedidos")
+    } catch (error) {
+      console.error("Error en la autenticación:", error);
+      if (!email) {
+        setEmailError("Ingrese un correo electrónico válido");
+      } else {
+        setEmailError("");
+      }
+      if (!password) {
+        setPasswordError("Ingrese una contraseña válida");
+      } else {
+        setPasswordError("");
+      }
+    }
+  };
 
   return (
     <div>
-      <img className={styles.loginImg} src={loginImg}></img>
-      <div className="{styles.containerCafe}">
-        <form>
+      <img className={styles.logo} src={logo} alt="Logo" />
+      <img className={styles.logoBottom} src={logo} alt="Logo" />
+      <img
+        className={styles.loginImg}
+        src={loginImg}
+        alt="Imagen de inicio de sesión"
+      />
+      <section className={styles.containerCafe}>
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Ingresar Correo Electrónico"
-            className="{styles.inputLogin}"
+            className={styles.inputEmail}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
+          {emailError && <p className={styles.error}>{emailError}</p>}{"Ingresar Correo Válido"}
           <input
             type="password"
             placeholder="Ingresar Clave"
-            className="{styles.inputLogin}"
+            className={styles.inputPassword}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" className="{styles.buttonLogin}">
+          {passwordError && <p className={styles.error}>{passwordError}</p>}{"Ingresar Clave Correcta"}
+          <button type="submit" className={styles.buttonLogin}>
             ENTRAR
           </button>
         </form>
-      </div>
+      </section>
     </div>
   );
 };
