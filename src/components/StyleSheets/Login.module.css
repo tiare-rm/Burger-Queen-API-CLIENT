@@ -49,17 +49,22 @@
   margin-top: 50px;
   border-radius: 5px;
 }
-.errorMessage {
-  position: absolute;
-  width: 179px;
+.inputEmail,
+.inputPassword::placeholder{
+  font-family: 'Merriweather Sans';
+}
+.error {
+  font-family: 'Merriweather Sans';
+  position: absolute;  
+  width: 100%;
   height: 16px;
-  left: 330px;
-  top: 389px;
+  margin-left: 130px;
+  margin-top: 10px;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
-  text-align: center;
+  text-align: left;
   color: #cc1313;
 }
 .buttonLogin {
@@ -71,4 +76,7 @@
   height: 53px;
   margin-left: 200px;
   margin-top: 80px;
+}
+.buttonLogin::placeholder{
+  font-family: 'Merriweather Sans';
 }
