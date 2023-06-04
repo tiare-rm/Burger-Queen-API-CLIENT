@@ -4,13 +4,15 @@ import Login from './components/Login';
 import Mesero from './components/Mesero/Mesero';
 import './components/StyleSheets/fonts.css';
 
-function App () {
-    return   <Router>
-    <Routes>
-        <Route path='/' element={<Login/>} />
-        <Route path='/mesero' element={<Mesero/>} />
-    </Routes>
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/mesero" element={<Mesero />} />
+      </Routes>
     </Router>
+  );
 }
 
-export default App
+export default App;

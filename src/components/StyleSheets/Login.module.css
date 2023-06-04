@@ -4,15 +4,15 @@
 }
 .logo{
   position: absolute;
-  width: 300px;
-  height: 272px;
-  left: 932px;
+  width: 260px;
+  height: 150px;
+  left: 1100px;
   top: 0px;  
 }
 .logoBottom{
   position: absolute;
-  width: 300px;
-  height: 272px;
+  width: 260px;
+  height: 150px;
   left: 12px;
   top: 523px;
 }
@@ -20,7 +20,7 @@
   position: absolute;
   height: 220px;
   width: 416px;
-  left: 367px;
+  left: 450px;
   top: 8px;
   border-radius: 0px;
 }
@@ -28,7 +28,7 @@
   position: absolute;
   height: 417px;
   width: 668px;
-  left: 250px;
+  left: 350px;
   top: 246px;
   border-radius: 15px;
   background: #e3e09a;
