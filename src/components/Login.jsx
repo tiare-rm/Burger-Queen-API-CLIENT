@@ -1,5 +1,4 @@
-// useState se usa para manejar el estado de componentes
-import React, { useState } from "react";
+import React, { useState } from "react"; // useState se usa para manejar el estado de componentes
 import styles from "./StyleSheets/Login.module.css";
 import loginImg from "./imagenes/loginImg.png";
 import logo from "./imagenes/logo.png";
@@ -51,7 +50,7 @@ const Login = () => {
           navigate("/admin");
           break;
         default:
-          navigate("/");
+          navigate("/login");
       }
     } catch (error) {
       console.error("Error en la autenticación:", error);
