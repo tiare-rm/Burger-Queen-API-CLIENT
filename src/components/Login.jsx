@@ -4,14 +4,19 @@ import loginImg from "./imagenes/loginImg.png";
 import logo from "./imagenes/logo.png";
 import "./StyleSheets/fonts.css";
 // useNavigate se usa para navegar las rutas de mi app
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // solicito las HTTP como en mdLinks
 import axios from "axios";
+import atras from "./imagenes/atras.png";
 
 const Login = () => {
   //inicializo el hook de react donde la variable navigate me permite usar navigate para cambiar de ruta
   const navigate = useNavigate();
-  // cada estado tiene las variable a usar que son correo y clave para el inicio de sesion
+ // constante para la flecha de atras y se vaya a pagina principal 
+  const handleBackClick = () => {
+    navigate("/");
+  }; 
+   // cada estado tiene las variable a usar que son correo y clave para el inicio de sesion
   const [email, setEmail] = useState("");
   // los valores estan vacios por el usario a logearse en la app
   const [password, setPassword] = useState("");
@@ -102,6 +107,9 @@ const Login = () => {
           </button>
         </form>
       </section>
+      <Link to="/">
+        <img className={styles.atras} src={atras} alt="atras" onClick={handleBackClick} />
+      </Link>
     </div>
   );
 };
