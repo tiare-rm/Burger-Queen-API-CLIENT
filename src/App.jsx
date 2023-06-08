@@ -4,6 +4,8 @@ import Login from './components/Login';
 import Mesero from './components/Mesero/Mesero';
 import './components/StyleSheets/fonts.css';
 import Principal from './components/Principal';
+import Admi from './components/Admi/Admi';
+import Cocina from './components/Cocina/Cocina';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
        <Route path="/" element={<Principal />} />
         <Route path="/login" element={<Login />} />
         <Route path="/mesero" element={<Mesero />} />
+        <Route path="/admi" element={<Admi />} />
+        <Route path="/cocina" element={<Cocina />} />
       </Routes>
     </Router>
   );

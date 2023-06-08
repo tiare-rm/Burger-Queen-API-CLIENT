@@ -12,51 +12,48 @@ import atras from "./imagenes/atras.png";
 const Login = () => {
   //inicializo el hook de react donde la variable navigate me permite usar navigate para cambiar de ruta
   const navigate = useNavigate();
- // constante para la flecha de atras y se vaya a pagina principal 
+  // constante para la flecha de atras y se vaya a pagina principal
   const handleBackClick = () => {
     navigate("/");
-  }; 
-   // cada estado tiene las variable a usar que son correo y clave para el inicio de sesion
+  };
+  // cada estado tiene las variable a usar que son correo y clave para el inicio de sesion
   const [email, setEmail] = useState("");
   // los valores estan vacios por el usario a logearse en la app
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
   // API de Sergio donde se enviarán los datos de inicio de sesión
   //al menos los de Ari (mesera) me sale POST /login 200
   const API_URL = "http://localhost:8080/login";
-
   //este controlador de eventos se ejecutara con el form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // uso try para reconocer los errores los cuales son captados por el catch de mi lógica
     try {
-      //con el post envio los datos de inicio de sesion al servidor para ser aceptados
-      const response = await axios.post(API_URL, {
-        email,
-        password,
-      });
-      //si la respuesta es exitosa se extrae la informacion rol de la propiedad user dentro de la data
-      const { rol } = response.data.user;
+      const response = await axios.post(
+        API_URL,
+        {
+          email: email,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      //con if hago comparaciones y declaro condiciones pero con switch gestiono una seleccion y
-      // si no es valida hago lo del default
-      switch (
-        rol //se determina el valor rol
-      ) {
-        case "mesero":
-          navigate("/mesero");
-          break;
-        case "cocina":
-          navigate("/cocina");
-          break;
-        case "admin":
-          navigate("/admin");
-          break;
-        default:
-          navigate("/login");
-      }
+      const { accessToken, role } = response.data;
+      // Guarda el token en el almacenamiento local (localStorage)
+      localStorage.setItem("token", accessToken);
+      console.log(response.data); // me da el objeto del usuario y el token tambien
+
+      if (role === "mesero") {
+        navigate("/mesero");
+      } else if (role === "admi") {
+        navigate("/admi");
+      } else if (role === "cocina") {
+        navigate("/cocina");
+      } 
     } catch (error) {
       console.error("Error en la autenticación:", error);
       if (!email) {
@@ -108,7 +105,12 @@ const Login = () => {
         </form>
       </section>
       <Link to="/">
-        <img className={styles.atras} src={atras} alt="atras" onClick={handleBackClick} />
+        <img
+          className={styles.atras}
+          src={atras}
+          alt="atras"
+          onClick={handleBackClick}
+        />
       </Link>
     </div>
   );
