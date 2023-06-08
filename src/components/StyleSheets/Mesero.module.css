@@ -1,0 +1,52 @@
+.Mesero {
+  font-family: "Merriweather", sans-serif;
+  position: absolute;
+}
+.logo {
+  position: absolute;
+  width: 260px;
+  height: 150px;
+  left: 1100px;
+  top: 0px;
+}
+.pedidos {
+  position: absolute;
+  width: 416px;
+  height: 125.14px;
+  left: 389px;
+  top: 6px;
+}
+nav ul,
+nav ul li {
+  position: relative;
+  display: inline-block;
+  width: 350px;
+  height: 16px;
+  margin-left: 155px;
+  margin-top: 60px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #000000;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+}
+nav ul li {
+  margin-right: 10px;
+}
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px 10px;
+  width: 200px;
+  font-family: "Merriweather", sans-serif;
+}
+button.selected {
+  background-color: #d4b794;
+  border-radius: 5px;
+  font-style: bolder;
+}
