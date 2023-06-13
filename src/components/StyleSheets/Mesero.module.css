@@ -38,18 +38,18 @@ nav ul li {
   margin-right: 10px;
 }
 button {
+  font-family: "Merriweather", sans-serif;
   border: none;
   background-color: transparent;
   cursor: pointer;
   padding: 5px 10px;
-  width: 200px;
-  font-family: "Merriweather", sans-serif;
+  width: 200px; 
 }
-button.selected {
+.selectedButton {
   background-color: #d4b794;
   border-radius: 5px;
-  font-style: bolder;
 }
+
 .carrito {
   position: absolute;
   width: 330px;
@@ -80,6 +80,7 @@ button.selected {
   margin-left: 45px;
   margin-top: 60px;
   border-radius: 10px;
+  font-family: "Merriweather Sans";
 }
 .informacionCliente::placeholder {
   position: absolute;
@@ -108,7 +109,7 @@ button.selected {
   height: 250px;
   margin-left: -20px;
   margin-top: 25px;
-  background:white;
+  background: white;
   border-radius: 5px;
 }
 .total {

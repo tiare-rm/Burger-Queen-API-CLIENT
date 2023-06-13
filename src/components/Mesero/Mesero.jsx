@@ -7,49 +7,52 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const Mesero = () => {
-  const location = useLocation();
-  const token = new URLSearchParams(location.search).get("token");
-  console.log("Token de acceso:", token);
-
-  const [name, setName] = useState("");
-  const [products, setProducts] = useState("");
-
-  // Estado del carrito de compra
-  const [cartItems, setCartItems] = useState([]);
-
-  // agregar un producto al carrito
-  const addToCart = (product) => {
-    const productWithClientName = { ...product, clientName: name };
-    setCartItems([...cartItems, productWithClientName]);
-  };
-
-  // eliminar un producto del carrito
-  const removeFromCart = (productId) => {
-    setCartItems(cartItems.filter((item) => item.id !== productId));
-  };
-
-  // Calcula el total del pedido
-  const getTotal = () => {
-    const total = cartItems.reduce((acc, item) => acc + item.price, 0);
-    return total.toFixed(2);
-  };
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);  
+  // declaro esta variable para almacenar el token de acceso traido de Login
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/products");
-        const data = await response.json();
-        setProducts(data);
-        console.log(data);
+        //verifico si el token esta disponible para usarlo en la solicitud get
+        const token = localStorage.getItem("token");
+  
+        if (token) {
+          const response = await axios.get("http://localhost:8080/products ", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+  
+          setData(response.data);
+          setLoading(false);
+        }
       } catch (error) {
-        console.log(error);
+        setError(error.message);
+        setLoading(false);
       }
     };
   
     fetchData();
   }, []);
   
-  // nav bar botones de filtro
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+       {/* Renderiza los datos obtenidos */}
+      {data.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+
+
+   // nav bar botones de filtro
   const [selectedButton, setSelectedButton] = useState("");
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
@@ -64,7 +67,7 @@ const Mesero = () => {
           <li>
             <button
               className={`${styles.button} ${
-                selectedButton === "desayuno" ? styles.selected : ""
+                selectedButton === "desayuno" ? styles.selectedButton : ""
               }`}
               onClick={() => handleButtonClick("desayuno")}
             >
@@ -74,7 +77,7 @@ const Mesero = () => {
           <li>
             <button
               className={`${styles.button} ${
-                selectedButton === "menu" ? styles.selected : ""
+                selectedButton === "menu" ? styles.selectedButton : ""
               }`}
               onClick={() => handleButtonClick("menu")}
             >
@@ -84,79 +87,7 @@ const Mesero = () => {
         </ul>
       </nav>
 
-      {/* pendiente debo mostrar los productos de la carta */}
-      {selectedButton === "desayuno" && (
-        <div>
-          {/* que debe pasar cuando se cumple la condicion del boton */}
-          {products
-            .filter((product) => product.category === "desayuno")
-            .map((product) => (
-              <div key={product.id}>
-                <h3>{product.name}</h3>
-                <p>${product.price}</p>
-                <button onClick={() => addToCart(product)}>
-                  Agregar al carrito
-                </button>
-              </div>
-            ))}
-        </div>
-      )}
-
-      {selectedButton === "menu" && (
-        <div>
-          {/* que debe pasar cuando se cumple la condicion del boton*/}
-          {products
-            .filter((product) => product.category === "menu")
-            .map((product) => (
-              <div key={product.id}>
-                <h3>{product.name}</h3>
-                <p>${product.price}</p>
-                <button onClick={() => addToCart(product)}>
-                  Agregar al carrito
-                </button>
-              </div>
-            ))}
-        </div>
-      )}
-
-      {/* Renderizar el carrito de compra */}
-      <div className={styles.carrito}>
-        <h2 className={styles.carritoTitle}>Carrito de Compra</h2>
-
-        <div className={styles.informacionCliente}>
-          <input
-            type="text"
-            placeholder="Nombre del cliente"
-            className={styles.inputNombreCliente}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <div className={styles.productosSeleccionados}></div>
-        </div>
-
-        {cartItems.length === 0 ? (
-          <p className={styles.nohayproductos}>
-            No hay productos en el carrito
-          </p>
-        ) : (
-          <ul>
-            {cartItems.map((item) => (
-              <li key={item.id}>
-                {item.name} - ${item.price}
-                <button
-                  className={styles.eliminarCarrito}
-                  onClick={() => removeFromCart(item.id)}
-                >
-                  Eliminar
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        <p className={styles.total}>Total: ${getTotal()}</p>
-      </div>
+      
     </div>
   );
 };
