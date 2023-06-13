@@ -42,16 +42,16 @@ const Login = () => {
         }
       );
 
-      const { accessToken, role } = response.data;
+      const { accessToken, user } = response.data;
       // Guarda el token en el almacenamiento local (localStorage)
       localStorage.setItem("token", accessToken);
       console.log(response.data); // me da el objeto del usuario y el token tambien
 
-      if (role === "mesero") {
+      if (user.role === "mesero") {
         navigate("/mesero");
-      } else if (role === "admi") {
+      } else if (user.role === "admin") {
         navigate("/admi");
-      } else if (role === "cocina") {
+      } else if (user.role === "cocina") {
         navigate("/cocina");
       } 
     } catch (error) {
