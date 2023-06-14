@@ -6,6 +6,7 @@ import Principal from './components/Principal';
 import Admi from './components/Admi/Admi';
 import Cocina from './components/Cocina/Cocina';
 import './components/StyleSheets/fonts.css';
+// IMPORTAR LAS PAGINAS QUE HAY QUE HACER !
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/mesero" element={<Mesero />} />
         <Route path="/admi" element={<Admi />} />
         <Route path="/cocina" element={<Cocina />} />
+        {/* <Route path="/trabajadores" element={<Trabajadores />} />
+        <Route path="/inventario" element={<Inventario/>} /> */}
       </Routes>
     </Router>
   );

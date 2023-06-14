@@ -49,7 +49,7 @@ const Login = () => {
 
       if (user.role === "mesero") {
         navigate("/mesero");
-      } else if (user.role === "admin") {
+      } else if (user.role === "admi") {
         navigate("/admi");
       } else if (user.role === "cocina") {
         navigate("/cocina");

@@ -2,30 +2,30 @@ import React, { useState, useEffect } from "react";
 import styles from "../StyleSheets/Mesero.module.css";
 import logo from "../imagenes/logo.png";
 import pedidos from "../imagenes/pedidos.png";
-import "../StyleSheets/fonts.css";
-import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
+const productsTypes = { desayuno: "Desayuno", menu: "Menu" };
+
 const Mesero = () => {
-  const [data, setData] = useState([]);
+  const [originalData, setOriginalData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);  
-  // declaro esta variable para almacenar el token de acceso traido de Login
+  const [error, setError] = useState(null);
+  const [selectedButton, setSelectedButton] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        //verifico si el token esta disponible para usarlo en la solicitud get
         const token = localStorage.getItem("token");
-  
+
         if (token) {
-          const response = await axios.get("http://localhost:8080/products ", {
+          const response = await axios.get("http://localhost:8080/products", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
-  
-          setData(response.data);
+
+          setOriginalData(response.data);
           setLoading(false);
         }
       } catch (error) {
@@ -33,29 +33,29 @@ const Mesero = () => {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, []);
-  
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    setFilteredData(originalData);
+  }, [originalData]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-       {/* Renderiza los datos obtenidos */}
-      {data.map((item) => (
-        <div key={item.id}>{item.name}</div>
-      ))}
-
-
-   // nav bar botones de filtro
-  const [selectedButton, setSelectedButton] = useState("");
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
+    if (buttonName === productsTypes.desayuno) {
+      const filtered = originalData.filter(
+        (product) => product.type === productsTypes.desayuno
+      );
+      setFilteredData(filtered);
+    } else if (buttonName === productsTypes.menu) {
+      const filtered = originalData.filter(
+        (product) => product.type === productsTypes.menu
+      );
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(originalData);
+    }
   };
 
   return (
@@ -67,9 +67,11 @@ const Mesero = () => {
           <li>
             <button
               className={`${styles.button} ${
-                selectedButton === "desayuno" ? styles.selectedButton : ""
+                selectedButton === productsTypes.desayuno
+                  ? styles.selectedButton
+                  : ""
               }`}
-              onClick={() => handleButtonClick("desayuno")}
+              onClick={() => handleButtonClick(productsTypes.desayuno)}
             >
               DESAYUNO
             </button>
@@ -77,17 +79,29 @@ const Mesero = () => {
           <li>
             <button
               className={`${styles.button} ${
-                selectedButton === "menu" ? styles.selectedButton : ""
+                selectedButton === productsTypes.menu
+                  ? styles.selectedButton
+                  : ""
               }`}
-              onClick={() => handleButtonClick("menu")}
+              onClick={() => handleButtonClick(productsTypes.menu)}
             >
-              MENÚ
+              MENU
             </button>
           </li>
         </ul>
       </nav>
-
       
+      {/* se filtra cada producto dependiendo del boton del nav */}
+      {filteredData.map((product) => (
+        <div key={product.id} className={styles.container}>
+          <img
+            src={product.image}
+            className={styles.image}
+          />
+          <h3 className={styles.name}>{product.name}</h3>
+          <p className={styles.price}>{product.price}</p>
+        </div>
+      ))}
     </div>
   );
 };

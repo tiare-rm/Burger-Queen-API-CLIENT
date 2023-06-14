@@ -1,20 +1,20 @@
 .Mesero {
   font-family: "Merriweather", sans-serif;
-  position: absolute;
+  position: relative;
 }
 .logo {
-  position: absolute;
+  position: relative;
   width: 260px;
   height: 150px;
   left: 1100px;
   top: 0px;
 }
 .pedidos {
-  position: absolute;
+  position: relative;
   width: 416px;
   height: 125.14px;
-  left: 420px;
-  top: 6px;
+  left: 200px;
+  top: -30px;
 }
 nav ul,
 nav ul li {
@@ -23,12 +23,13 @@ nav ul li {
   width: 350px;
   height: 16px;
   margin-left: 155px;
-  margin-top: 73px;
+  margin-top: -10px;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   text-align: center;
   color: #000000;
+  font-family: "Merriweather", sans-serif;
 }
 nav ul {
   list-style: none;
@@ -49,80 +50,21 @@ button {
   background-color: #d4b794;
   border-radius: 5px;
 }
-
-.carrito {
-  position: absolute;
-  width: 330px;
-  height: 444px;
-  left: 980px;
-  top: 200px;
-  background: #d5b794;
+.container {
+  border: 1px solid #E3E09A;
+  padding: 10px;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
-.carritoTitle {
-  position: absolute;
-  width: 229px;
-  height: 16px;
-  margin-left: 50px;
-  margin-top: 15px;
-  font-family: "Merriweather Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 25px;
-  text-align: center;
-  color: #000000;
+.image {
+  width: 100px;
+  height: 100px;
 }
-.informacionCliente {
-  position: absolute;
-  width: 214px;
-  height: 43px;
-  margin-left: 45px;
-  margin-top: 60px;
-  border-radius: 10px;
-  font-family: "Merriweather Sans";
-}
-.informacionCliente::placeholder {
-  position: absolute;
-  width: 249px;
-  height: 16px;
-  left: 771px;
-  top: 324px;
-  font-family: "Merriweather Sans";
-  font-style: normal;
-  font-weight: 400;
+.name {
   font-size: 16px;
-  line-height: 20px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.23);
+  font-weight: bold;
 }
-.nohayproductos {
-  position: absolute;
-  width: 229px;
-  height: 16px;
-  margin-left: 50px;
-  margin-top: 150px;
-}
-.productosSeleccionados {
-  position: absolute;
-  width: 289px;
-  height: 250px;
-  margin-left: -20px;
-  margin-top: 25px;
-  background: white;
-  border-radius: 5px;
-}
-.total {
-  position: absolute;
-  width: 229px;
-  height: 16px;
-  margin-left: 50px;
-  margin-top: 375px;
-  font-family: "Merriweather Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 25px;
-  text-align: center;
-  color: #000000;
+.price {
+  font-size: 14px;
+  color: black;
 }
