@@ -1,6 +1,6 @@
 .Mesero {
   font-family: "Merriweather", sans-serif;
-  position: relative;
+  display: flex;
 }
 .logo {
   position: relative;
@@ -44,27 +44,42 @@ button {
   background-color: transparent;
   cursor: pointer;
   padding: 5px 10px;
-  width: 200px; 
+  width: 200px;
 }
 .selectedButton {
   background-color: #d4b794;
   border-radius: 5px;
 }
 .container {
-  border: 1px solid #E3E09A;
+  display: flex;
+  border: 1px solid #e3e09a;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+  flex-wrap: nowrap;
+  align-content: center;
+  flex-direction: column;
+  width: 10%;
+  margin-left: 10%;
+  align-self: stretch;
+}
+/* aplicar las propiedades a los contenedores individuales dentro del contenedor principal*/
+.container > div {
+  flex: 0 0 calc(-10% - 10px); 
+  margin: 10px;
 }
 .image {
   width: 100px;
   height: 100px;
+  margin-left: 10%;
 }
 .name {
   font-size: 16px;
   font-weight: bold;
+  margin-left: 5%;
 }
 .price {
   font-size: 14px;
   color: black;
+  margin-left: 42%;
 }

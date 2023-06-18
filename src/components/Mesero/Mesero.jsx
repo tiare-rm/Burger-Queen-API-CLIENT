@@ -11,7 +11,7 @@ const Mesero = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedButton, setSelectedButton] = useState("");
+  const [selectedButton, setSelectedButton] = useState(productsTypes.desayuno);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,9 +24,14 @@ const Mesero = () => {
               Authorization: `Bearer ${token}`,
             },
           });
-
+         
           setOriginalData(response.data);
           setLoading(false);
+          
+          const filtered = response.data.filter(
+            (product) => product.type === productsTypes.desayuno
+          );
+          setFilteredData(filtered);
         }
       } catch (error) {
         setError(error.message);
@@ -36,10 +41,6 @@ const Mesero = () => {
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    setFilteredData(originalData);
-  }, [originalData]);
 
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
@@ -53,9 +54,7 @@ const Mesero = () => {
         (product) => product.type === productsTypes.menu
       );
       setFilteredData(filtered);
-    } else {
-      setFilteredData(originalData);
-    }
+    } 
   };
 
   return (

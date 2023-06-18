@@ -9,7 +9,10 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start": "comando-de-inicio",
-    "test": "jest --coverage"
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react"
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -27,8 +30,5 @@
     "jest": "^27.0.6",
     "babel-jest": "^27.0.6",
     "babel-preset-react-app": "^10.0.0"
-  },
-  "jest": {
-    "preset": "babel-preset-react"
   }
 }

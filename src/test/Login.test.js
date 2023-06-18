@@ -1,45 +1,42 @@
-// import dependencies
-import React from 'react'
+import React from 'react';
+import { mount } from 'enzyme';
+import Login from './Login';
 
-// import API mocking utilities from Mock Service Worker
-import {rest} from 'msw'
-import {setupServer} from 'msw/node'
+describe('Login Component', () => {
+  let wrapper;
 
-// import react-testing methods
-import {render, fireEvent, screen} from '@testing-library/react'
+  beforeEach(() => {
+    wrapper = mount(<Login />);
+  });
 
-// add custom jest matchers from jest-dom
-import '@testing-library/jest-dom'
-// the component to test
-import Fetch from '../fetch'
+  afterEach(() => {
+    wrapper.unmount();
+  });
 
-/* // declare which API requests to mock
-const server = setupServer(
-  // capture "GET /greeting" requests
-  rest.get('/greeting', (req, res, ctx) => {
-    // respond using a mocked JSON body
-    return res(ctx.json({greeting: 'hello there'}))
-  }),
-)
+  it('should display error message for empty email input', () => {
+    const form = wrapper.find('form');
+    form.simulate('submit');
 
-// establish API mocking before all tests
-beforeAll(() => server.listen())
-// reset any request handlers that are declared as a part of our tests
-// (i.e. for testing one-time error scenarios)
-afterEach(() => server.resetHandlers())
-// clean up once the tests are done
-afterAll(() => server.close())
+    const emailError = wrapper.find('.error').at(0);
+    expect(emailError.text()).toBe('Ingrese un correo electrónico válido');
+  });
 
-// ...
+  it('should display error message for empty password inptu', () => {
+    const form = wrapper.find('form');
+    form.simulate('submit');
 
-test('handles server error', async () => {
-  server.use(
-    // override the initial "GET /greeting" request handler
-    // to return a 500 Server Error
-    rest.get('/greeting', (req, res, ctx) => {
-      return res(ctx.status(500))
-    }),
-  )
+    const passwordError = wrapper.find('.error').at(1);
+    expect(passwordError.text()).toBe('Ingrese una contraseña válida');
+  });
 
-  // ...
-}) */
+  it('should display error message for invalid email format', () => {
+    const emailInput = wrapper.find('input[type="email"]');
+    emailInput.simulate('change', { target: { value: 'ari@gmail.com' } });
+
+    const form = wrapper.find('form');
+    form.simulate('submit');
+
+    const emailError = wrapper.find('.error').at(0);
+    expect(emailError.text()).toBe('Ingrese un correo electrónico válido');
+  });
+});
