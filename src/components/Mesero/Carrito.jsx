@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../StyleSheets/Mesero.module.css";
+import "../StyleSheets/fonts.css";
 
 const Carrito = () => {
   const [name, setName] = useState("");

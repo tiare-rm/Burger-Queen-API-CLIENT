@@ -55,20 +55,19 @@ button {
   background-color: #d4b794;
   border-radius: 5px;
 }
+.divMayor{
+  width: 80%;
+}
 .container {
-  display: inline-block;
+  flex: 0 0 calc(25% - 20px);
   width: 150px;
   margin: 10px;
-  border: 1px solid #e3e09a;
+  border: 1px solid #e3e09a;  
+  border-radius: 10px;
+  display: inline-block;
+  position: relative;
   padding: 3px;
   text-align: center;
-  border-radius: 10px;
-  margin-left: 3%;
-}
-/* aplicar las propiedades a los contenedores individuales dentro del contenedor principal*/
-.container > div {
-  flex: 0 0 calc(-10% - 10px);
-  margin: 10px;
 }
 .image {
   width: 100px;

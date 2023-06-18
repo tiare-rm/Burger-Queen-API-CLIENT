@@ -92,6 +92,7 @@ const Mesero = () => {
       </nav>
       
       {/* se filtra cada producto dependiendo del boton del nav */}
+      <div className={styles.divMayor}>
       {filteredData.map((product) => (
         <div key={product.id} className={styles.container}>
           <img
@@ -101,9 +102,10 @@ const Mesero = () => {
           <h3 className={styles.name}>{product.name}</h3>
           <p className={styles.price}>{product.price}</p>
         </div>
-      ))}
+       ))}
+       </div>
 
-        {/* Agrega  el componente Carrito aquí */}
+        {/* se agrega aquí el componente del Carrito*/}
         <Carrito />
     </div>
   );
