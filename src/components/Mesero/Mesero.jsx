@@ -3,6 +3,7 @@ import styles from "../StyleSheets/Mesero.module.css";
 import logo from "../imagenes/logo.png";
 import pedidos from "../imagenes/pedidos.png";
 import axios from "axios";
+import Carrito from "./Carrito";
 
 const productsTypes = { desayuno: "Desayuno", menu: "Menu" };
 
@@ -27,7 +28,7 @@ const Mesero = () => {
          
           setOriginalData(response.data);
           setLoading(false);
-          
+
           const filtered = response.data.filter(
             (product) => product.type === productsTypes.desayuno
           );
@@ -101,6 +102,9 @@ const Mesero = () => {
           <p className={styles.price}>{product.price}</p>
         </div>
       ))}
+
+        {/* Agrega el componente Carrito aquí */}
+        <Carrito />
     </div>
   );
 };
