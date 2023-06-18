@@ -103,7 +103,7 @@ const Mesero = () => {
         </div>
       ))}
 
-        {/* Agrega el componente Carrito aquí */}
+        {/* Agrega  el componente Carrito aquí */}
         <Carrito />
     </div>
   );

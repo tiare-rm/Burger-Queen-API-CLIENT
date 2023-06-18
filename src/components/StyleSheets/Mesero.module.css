@@ -73,7 +73,8 @@ button {
 .image {
   width: 100px;
   height: 100px;
-  margin-left: 10%;
+  margin-left: 0%;
+  margin-top: 10%;
 }
 .name {
   font-size: 16px;
@@ -85,4 +86,70 @@ button {
   color: black;
   margin-left: 0%;
 }
-
+.carrito {
+  position: absolute;
+  width: 330px;
+  height: 444px;
+  left: 980px;
+  top: 200px;
+  background: #d5b794;
+  border-radius: 5px;
+}
+.carritoTitle {
+  position: absolute;
+  width: 229px;
+  height: 16px;
+  margin-left: 50px;
+  margin-top: 20px;
+  font-family: "Merriweather Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  color: #000000;
+}
+.informacionCliente {
+  position: absolute;
+  width: 214px;
+  height: 43px;
+  margin-left: 45px;
+  margin-top: 60px;
+  border-radius: 25px;
+  font-family: "Merriweather Sans";
+}
+.informacionCliente::placeholder {
+  position: absolute;
+  width: 249px;
+  height: 16px;
+  left: 771px;
+  top: 324px;
+  font-family: "Merriweather Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.23);
+}
+.nohayproductos {
+  position: absolute;
+  width: 229px;
+  height: 16px;
+  margin-left: 50px;
+  margin-top: 150px;
+}
+.total {
+  position: absolute;
+  width: 229px;
+  height: 16px;
+  margin-left: 50px;
+  margin-top: 375px;
+  font-family: "Merriweather Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+  color: #000000;
+}
