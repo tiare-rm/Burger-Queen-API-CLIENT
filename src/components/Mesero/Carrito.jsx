@@ -26,6 +26,19 @@ const Carrito = () => {
     return total.toFixed(2);
   };
 
+  // boton para cancelar la orden
+  const cancelOrder = () => {
+    setCartItems([]);
+    setName("");
+    setProducts("");
+  };
+
+  // envio la orden a la cocina
+  const sendToKitchen = () => {
+    // trabajar en la logica y redireccion del item a la pagina de la cocina
+    console.log("Pedido enviado a la cocina:", cartItems);
+  };
+
   return (
     <div>
       <div className={styles.carrito}>
@@ -64,6 +77,9 @@ const Carrito = () => {
         )}
 
         <p className={styles.total}>Total: ${getTotal()}</p>
+        <button className={styles.botonEnviar} onClick={sendToKitchen}>Enviar a Cocina</button>
+        <button className={styles.botonCancelar} onClick={cancelOrder}>Cancelar Orden</button>
+        
       </div>
     </div>
   );

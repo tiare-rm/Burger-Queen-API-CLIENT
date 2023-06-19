@@ -13,6 +13,9 @@ const Mesero = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedButton, setSelectedButton] = useState(productsTypes.desayuno);
+  const [cartItems, setCartItems] = useState([]);
+  const [clientName, setClientName] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +61,19 @@ const Mesero = () => {
     } 
   };
 
+ const addToCart = (product) => {
+    const productWithClientName = { ...product, clientName };
+    setCartItems([...cartItems, productWithClientName]);
+  };
+  
+  const handleProductClick = (product) => {
+    if (selectedProduct && selectedProduct.id === product.id) {
+      setSelectedProduct(null);
+    } else {
+      setSelectedProduct(product);
+    }
+  };
+
   return (
     <div>
       <img className={styles.logo} src={logo} alt="Logo" />
@@ -93,20 +109,25 @@ const Mesero = () => {
       
       {/* se filtra cada producto dependiendo del boton del nav */}
       <div className={styles.divMayor}>
-      {filteredData.map((product) => (
-        <div key={product.id} className={styles.container}>
-          <img
-            src={product.image}
-            className={styles.image}
-          />
-          <h3 className={styles.name}>{product.name}</h3>
-          <p className={styles.price}>{product.price}</p>
-        </div>
-       ))}
-       </div>
+        {filteredData.map((product) => (
+          <div
+            key={product.id}
+            className={`${styles.container} ${
+              selectedProduct && selectedProduct.id === product.id
+                ? styles.selectedContainer
+                : ""
+            }`}
+            onClick={() => handleProductClick(product)}
+          >
+            <img src={product.image} className={styles.image} />
+            <h3 className={styles.name}>{product.name}</h3>
+            <p className={styles.price}>{product.price}</p>
+          </div>
+        ))}
+      </div>
 
         {/* se agrega aquí el componente del Carrito*/}
-        <Carrito />
+        <Carrito cartItems={cartItems} setClientName={setClientName} />
     </div>
   );
 };
