@@ -41,8 +41,6 @@ const Carrito = ({ cartItems, setCartItems, setClientName }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-
-          <div className={styles.productosSeleccionados}></div>
         </div>
 
         {cartItems.length === 0 ? (
@@ -50,17 +48,17 @@ const Carrito = ({ cartItems, setCartItems, setClientName }) => {
             No hay productos en el carrito
           </p>
         ) : (
-          <ul>
-            {cartItems.map((item) => (
-              <li key={item.id}>
-                {item.name} - ${item.price}
-                <button
-                  className={styles.eliminarCarrito}
-                  onClick={() => removeFromCart(item.id)}
-                >
-                  Eliminar
-                </button>
-              </li>
+          <ul className={styles.containerProductos}>
+            {cartItems.map((item) => (            
+                <li key={item.id}>
+                  {item.name} - ${item.price}
+                  <button
+                    className={styles.eliminarCarrito}
+                    onClick={() => removeFromCart(item.id)}
+                  >
+                    Eliminar Producto
+                  </button>
+                </li>            
             ))}
           </ul>
         )}

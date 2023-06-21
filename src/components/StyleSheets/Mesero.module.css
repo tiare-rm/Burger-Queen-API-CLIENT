@@ -55,14 +55,14 @@ button {
   background-color: #d4b794;
   border-radius: 5px;
 }
-.divMayor{
+.divMayor {
   width: 70%;
 }
 .container {
   flex: 0 0 calc(25% - 20px);
   width: 150px;
   margin: 10px;
-  border: 1px solid #e3e09a;  
+  border: 1px solid #e3e09a;
   border-radius: 10px;
   display: inline-block;
   position: relative;
@@ -86,9 +86,8 @@ button {
   margin-left: 0%;
 }
 
-
 /* COMPONENTE CARRITO */
-.selectedContainer{
+.selectedContainer {
   background: #e3e09a;
 }
 .carrito {
@@ -144,6 +143,18 @@ button {
   margin-left: 50px;
   margin-top: 150px;
 }
+.containerProductos {
+  display: list-item;
+  align-items: normal;
+  margin-bottom: 0px;
+  list-style: square;
+  margin-top: 31%;
+}
+.eliminarCarrito {
+  border-color: red;
+  border-radius: 10px;
+  background-color: rgb(224, 92, 92);
+}
 .total {
   position: absolute;
   width: 229px;
@@ -158,18 +169,18 @@ button {
   text-align: center;
   color: #000000;
 }
-.botonEnviar{
+.botonEnviar {
   position: absolute;
   margin-left: 30px;
   margin-top: 360px;
   width: 125px;
   height: 60px;
-  background: #93C06F;
+  background: #93c06f;
   border-radius: 5px;
   font-family: "Merriweather Sans";
   font-weight: bold;
 }
-.botonCancelar{
+.botonCancelar {
   position: absolute;
   margin-left: 180px;
   margin-top: 360px;
