@@ -71,6 +71,7 @@ const Mesero = () => {
       setSelectedProduct(null);
     } else {
       setSelectedProduct(product);
+      addToCart(product);
     }
   };
 
@@ -117,7 +118,8 @@ const Mesero = () => {
                 ? styles.selectedContainer
                 : ""
             }`}
-            onClick={() => handleProductClick(product)}
+            onClick={() => handleProductClick(product)
+          }
           >
             <img src={product.image} className={styles.image} />
             <h3 className={styles.name}>{product.name}</h3>
@@ -127,7 +129,7 @@ const Mesero = () => {
       </div>
 
         {/* se agrega aquí el componente del Carrito*/}
-        <Carrito cartItems={cartItems} setClientName={setClientName} />
+        <Carrito cartItems={cartItems} setCartItems={setCartItems} setClientName={setClientName} />
     </div>
   );
 };

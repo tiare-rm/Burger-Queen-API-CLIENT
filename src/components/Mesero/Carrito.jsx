@@ -2,18 +2,8 @@ import React, { useState } from "react";
 import styles from "../StyleSheets/Mesero.module.css";
 import "../StyleSheets/fonts.css";
 
-const Carrito = () => {
+const Carrito = ({ cartItems, setCartItems, setClientName }) => {
   const [name, setName] = useState("");
-  const [products, setProducts] = useState("");
-
-  // Estado del carrito de compra
-  const [cartItems, setCartItems] = useState([]);
-
-  // Agregar producto al carrito
-  const addToCart = (product) => {
-    const productWithClientName = { ...product, clientName: name };
-    setCartItems([...cartItems, productWithClientName]);
-  };
 
   // Eliminar producto del carrito
   const removeFromCart = (productId) => {
@@ -30,7 +20,6 @@ const Carrito = () => {
   const cancelOrder = () => {
     setCartItems([]);
     setName("");
-    setProducts("");
   };
 
   // envio la orden a la cocina
@@ -77,9 +66,12 @@ const Carrito = () => {
         )}
 
         <p className={styles.total}>Total: ${getTotal()}</p>
-        <button className={styles.botonEnviar} onClick={sendToKitchen}>Enviar a Cocina</button>
-        <button className={styles.botonCancelar} onClick={cancelOrder}>Cancelar Orden</button>
-        
+        <button className={styles.botonEnviar} onClick={sendToKitchen}>
+          Enviar a Cocina
+        </button>
+        <button className={styles.botonCancelar} onClick={cancelOrder}>
+          Cancelar Orden
+        </button>
       </div>
     </div>
   );
